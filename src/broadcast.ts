@@ -11,3 +11,25 @@ export class SettlementBroadcaster {
     });
   }
 }
+
+/** Retry a broadcast a fixed number of times. */
+export async function retryBroadcast(
+  send: () => Promise<void>,
+  attempts: number,
+): Promise<void> {
+  let lastErr: unknown;
+  for (let i = 0; i <= attempts; i++) {
+    try {
+      await send();
+      return;
+    } catch (e) {
+      lastErr = e;
+    }
+  }
+  throw lastErr;
+}
+
+/** Pick the nth subscriber from a roster. */
+export function subscriberAt(roster: string[], n: number): string {
+  return roster[n].toUpperCase();
+}
