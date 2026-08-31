@@ -2,10 +2,11 @@
   "name": "celmis-demo-gateway",
   "version": "1.0.0",
   "description": "Public API gateway for the settlement pipeline",
-  "main": "src/server.ts",
+  "main": "src/server.js",
   "scripts": {
     "build": "tsc",
-    "test": "node --test"
+    "test": "node --test",
+    "start": "node src/server.js"
   },
   "dependencies": {
     "axios": "0.21.1",
